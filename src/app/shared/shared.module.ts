@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
 import { CustomersListComponent } from './components/customers-list/customers-list.component';
+import { BlogCreateModalComponent } from '../components/blog/blog-create-modal/blog-create-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CustomersListComponent } from './components/customers-list/customers-li
     ProjectModalComponent,
     ProjectsListComponent,
     ProjectComponent,
-    CustomersListComponent
+    CustomersListComponent,
+    BlogCreateModalComponent
   ],
   imports: [
     CommonModule,

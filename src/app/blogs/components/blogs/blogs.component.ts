@@ -6,9 +6,10 @@ import {blogsLoading, getBlogs} from "../../store/blog.selector";
 import {select} from "@ngrx/core";
 import * as fromBlogs from "../../store/blog.actions";
 import {getUser} from "../../../auth/store/auth.selectors";
-import {map} from "rxjs/operators";
+import {map, take} from "rxjs/operators";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../reducers";
+import {BlogCreateModalComponent} from "../../../components/blog/blog-create-modal/blog-create-modal.component";
 @Component({
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
@@ -44,4 +45,13 @@ export class BlogsComponent implements OnInit {
     return this.store.select(getUser);
   }
 
+  showAddModal(){
+      this.modalRef = this.modalService.show(BlogCreateModalComponent,this.modalConfig);
+      this.modalRef.content.heading = 'Add new blog';
+      this.modalRef.content.blogData.pipe(
+          take(1)
+      ).subscribe( (blogData: BlogModel) => {
+          this.store.dispatch(new fromBlogs.CreateBlog({blog: blogData}));
+      })
+  }
 }

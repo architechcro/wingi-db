@@ -29,6 +29,7 @@ export class BlogsLoaded implements Action {
 }
 export class CreateBlog implements Action {
   readonly type = BlogActionTypes.CreateBlog;
+  constructor( public payload: { blog: BlogModel }) {}
 }
 export class BlogCreated implements  Action{
   readonly type = BlogActionTypes.BlogCreated;
