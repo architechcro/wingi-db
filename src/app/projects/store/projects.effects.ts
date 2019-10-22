@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 import { ProjectsService } from '../services/projects.service';
 
 import * as fromProjects from './../store/projects.actions';
-import { AppState } from '../../reducers/index';
+import { AppState } from '../../reducers';
 import { getUser } from '../../auth/store/auth.selectors';
 
 @Injectable()
@@ -47,7 +47,7 @@ export class ProjectsEffects {
   @Effect({ dispatch: false })
   added$ = this.actions$.pipe(
     ofType(ProjectsActionTypes.PROJECT_ADDED),
-    map((action: fromProjects.ProjectDeleted) => action.payload),
+    map((action: fromProjects.ProjectAdded) => action.payload),
     withLatestFrom(this.store.pipe(select(getUser))),
     switchMap(([payload, user]: any) => this.projectsService.add(payload.project, user.uid))
   );

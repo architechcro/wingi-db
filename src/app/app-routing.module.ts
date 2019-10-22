@@ -8,6 +8,7 @@ import { MainComponent } from './core/main/main.component';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { AdminComponent } from './admin/containers/admin/admin.component';
 import { AdminGuard } from './admin/guard/admin.guard';
+import {BlogsComponent} from "./blogs/components/blogs/blogs.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent, children: [
@@ -16,7 +17,8 @@ const routes: Routes = [
     { path: 'customers', loadChildren: './customers/customers.module#CustomersModule', canActivate: [AuthGuard]},
     { path: 'profile', loadChildren: './profile/profile.module#ProfileModule', canActivate: [AuthGuard] },
     { path: 'charts', loadChildren: './charts/charts.module#ChartsDataModule', canActivate: [AuthGuard] },
-    { path: 'admin-panel', component: AdminComponent, canActivate: [AdminGuard]}
+    { path: 'admin-panel', component: AdminComponent, canActivate: [AdminGuard]},
+      {path: 'blogs', component:BlogsComponent, canActivate:[AuthGuard]}
   ]},
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
